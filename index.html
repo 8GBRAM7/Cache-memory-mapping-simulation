@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache Memory Mapping Simulator</title>
+    <link rel="stylesheet" href="ok.css">
+</head>
+<body>
+
+    <header>
+        <h1>Direct-Mapped Cache Simulator</h1>
+        <p> Computer Architecture Mini-Project</p>
+    </header>
+
+    <div class="container">
+        <!-- Left Panel: Configurations & Controls -->
+        <div class="card">
+            <h3>Configuration</h3>
+            <div class="form-group">
+                <label>Cache Size (Bytes)</label>
+                <input type="number" id="cacheSize" value="32" step="2">
+            </div>
+            <div class="form-group">
+                <label>Block Size (Bytes)</label>
+                <input type="number" id="blockSize" value="4" step="2">
+            </div>
+            <button onclick="initCache()">Reset / Apply Config</button>
+
+            <hr class="divider">
+
+            <h3>Memory Access</h3>
+            <div class="form-group">
+                <label>Enter Memory Address (Decimal)</label>
+                <input type="number" id="memAddress" value="12" min="0">
+            </div>
+            <button onclick="accessAddress()">Access Address</button>
+            <div id="statusMessage" class="status-msg"></div>
+        </div>
+
+        <!-- Right Panel: Simulation Dashboard -->
+        <div>
+            <!-- Stats Panel -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span>Total Accesses</span>
+                    <strong id="statTotal">0</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Hits</span>
+                    <strong id="statHits" class="success-text">0</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Hit Rate</span>
+                    <strong id="statRate">0.0%</strong>
+                </div>
+            </div>
+
+            <!-- Address Breakdown -->
+            <div class="card mb-20">
+                <h3>Address Breakdown (Binary)</h3>
+                <div class="breakdown-box" id="binaryBreakdown">
+                    Enter an address to view bit breakdown...
+                </div>
+            </div>
+
+            <!-- Cache Table View -->
+            <div class="card">
+                <h3>Cache Memory State</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Line / Set</th>
+                                <th>Valid (V)</th>
+                                <th>Tag</th>
+                                <th>Data Block</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cacheTableBody">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="logic.js"></script>
+</body>
+</html>
